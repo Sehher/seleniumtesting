@@ -65,6 +65,22 @@ public class GoogleSeleniumTest {
         Thread.sleep(5000);
     }
 
-
+    @Test
+    public void twoInputTest() throws InterruptedException{
+        driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
+        Thread.sleep(2000);
+        WebElement searchInputBoxA = driver.findElementById("sum1");
+        searchInputBoxA.sendKeys("3");
+        Thread.sleep(2000);
+        WebElement searchInputBoxB = driver.findElementById("sum2");
+        searchInputBoxB.sendKeys("3");
+        Thread.sleep(2000);
+        WebElement getTotalButton = driver.findElement(By.xpath("//*[@id=\"gettotal\"]/button"));
+        getTotalButton.click();
+        Thread.sleep(5000);
+        WebElement sumDone = driver.findElementById("displayvalue");
+        assertTrue(sumDone.isDisplayed());
+        Thread.sleep(5000);
+    }
 
 }
