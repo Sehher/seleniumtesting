@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -28,7 +29,6 @@ public class GoogleSeleniumTest {
 
     @Test
     public void searchTest() throws InterruptedException {
-        // //maximises the screen
         driver.get("http://google.com");
         Thread.sleep(2000); //This keeps the window open for 2 seconds before closing it
         WebElement searchField = driver.findElement(By.name("q"));
@@ -41,6 +41,30 @@ public class GoogleSeleniumTest {
         WebElement linkToBiggerPicture = driver.findElementByLinkText("Images for funny cat"); //finds the link in the web search
         linkToBiggerPicture.click();
         Thread.sleep(5000);
+        WebElement clickOnPicture = driver.findElementById("H3Jk1nGZgdaK6M:");
+        clickOnPicture.click();
+        Thread.sleep(5000);
+
+
+//        driver.findElement(By.xpath())
+//                driver.findElement(By.cssSelector()) These are for when the element doesn't have an ID
     }
+
+    @Test
+    public void messageTest() throws InterruptedException {
+        driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
+        Thread.sleep(2000);
+        WebElement searchTextBox = driver.findElementById("user-message");
+        searchTextBox.sendKeys("This is my message");
+        Thread.sleep(5000);
+        WebElement showMessageButton = driver.findElement(By.xpath("//*[@id=\"get-input\"]/button"));
+        showMessageButton.click();
+        Thread.sleep(5000);
+        WebElement messageShown = driver.findElementById("display");
+        assertTrue(messageShown.isDisplayed());
+        Thread.sleep(5000);
+    }
+
+
 
 }
