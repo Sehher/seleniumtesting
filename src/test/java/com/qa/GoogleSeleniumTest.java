@@ -15,15 +15,15 @@ public class GoogleSeleniumTest {
     private ChromeDriver driver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Profile\\IdeaProjects\\seleniumtesting\\src\\test\\java\\resources\\chromedriver.exe");
 
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 
@@ -66,7 +66,7 @@ public class GoogleSeleniumTest {
     }
 
     @Test
-    public void twoInputTest() throws InterruptedException{
+    public void twoInputTest() throws InterruptedException {
         driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
         Thread.sleep(2000);
         WebElement searchInputBoxA = driver.findElementById("sum1");
@@ -81,6 +81,45 @@ public class GoogleSeleniumTest {
         WebElement sumDone = driver.findElementById("displayvalue");
         assertTrue(sumDone.isDisplayed());
         Thread.sleep(5000);
+    }
+
+    @Test
+    public void singleCheckBoxTest() throws InterruptedException {
+        driver.get("https://www.seleniumeasy.com/test/basic-checkbox-demo.html");
+        Thread.sleep(2000);
+        WebElement checkBox = driver.findElementById("isAgeSelected");
+        checkBox.click();
+        Thread.sleep(2000);
+        WebElement successMessage = driver.findElementById("txtAge");
+        assertTrue(successMessage.isDisplayed());
+        Thread.sleep(5000);
+    }
+
+    @Test
+    public void multiCheckBoxTest() throws InterruptedException {
+        driver.get("https://www.seleniumeasy.com/test/basic-checkbox-demo.html");
+        Thread.sleep(2000);
+        WebElement checkAllButton = driver.findElement(By.xpath("//*[@id=\"check1\"]"));
+        checkAllButton.click();
+        Thread.sleep(2000);
+        String uncheckAll = driver.findElementById("check1").getAttribute("value");
+        assertTrue(uncheckAll.equals("Uncheck All"));
+        Thread.sleep(5000);
+    }
+
+    @Test
+    public void radioButtonTest() throws InterruptedException {
+        driver.get("https://www.seleniumeasy.com/test/basic-radiobutton-demo.html");
+        Thread.sleep(2000);
+        WebElement checkMaleButton = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[1]/div[2]/label[1]/input"));
+        checkMaleButton.click();
+        Thread.sleep(2000);
+        WebElement getValueButton = driver.findElementById("buttoncheck");
+        getValueButton.click();
+        Thread.sleep(2000);
+        WebElement checkMaleOutput = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[1]/div[2]/p[3]"));
+        assertTrue(checkMaleOutput.isDisplayed());
+        Thread.sleep(2000);
     }
 
 }
