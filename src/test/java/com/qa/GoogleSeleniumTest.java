@@ -140,4 +140,19 @@ public class GoogleSeleniumTest {
         assertTrue(maleAgeTextOutput.contains("0 - 5"));
     }
 
+    @Test
+    public void dropDownListTest() throws InterruptedException{
+        driver.get("https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html");
+        Thread.sleep(2000);
+        WebElement checkDropDown = driver.findElementById("select-demo");
+        checkDropDown.click();
+        Thread.sleep(2000);
+        WebElement selectOption = driver.findElementByXPath("//*[@id=\"select-demo\"]/option[4]");
+        selectOption.click();
+        Thread.sleep(2000);
+        String checkDay = driver.findElementByXPath("//*[@id=\"easycont\"]/div/div[2]/div[1]/div[2]/p[2]").getText();
+        assertTrue(checkDay.contains("Tuesday"));
+        Thread.sleep(2000);
+    }
+
 }
