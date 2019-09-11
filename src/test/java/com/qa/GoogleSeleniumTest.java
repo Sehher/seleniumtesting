@@ -122,4 +122,22 @@ public class GoogleSeleniumTest {
         Thread.sleep(2000);
     }
 
+    @Test
+    public void radioButtonTest2() throws InterruptedException {
+        driver.get("https://www.seleniumeasy.com/test/basic-radiobutton-demo.html");
+        Thread.sleep(2000);
+        WebElement checkMaleButton = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[1]/label[1]/input"));
+        checkMaleButton.click();
+        Thread.sleep(2000);
+        WebElement checkAgeButton = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[2]/label[1]/input"));
+        checkAgeButton.click();
+        Thread.sleep(2000);
+        WebElement getValuesButton = driver.findElementByXPath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/button");
+        getValuesButton.click();
+        Thread.sleep(2000);
+        String maleAgeTextOutput = driver.findElementByXPath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/p[2]").getText();
+        assertTrue(maleAgeTextOutput.contains("Male"));
+        assertTrue(maleAgeTextOutput.contains("0 - 5"));
+    }
+
 }
